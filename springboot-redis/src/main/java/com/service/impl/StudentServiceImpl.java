@@ -29,6 +29,7 @@ public class StudentServiceImpl implements StudentService {
         if(null == student){
             student = studentMapper.selectByPrimaryKey(id);
             redisTemplate.opsForValue().set("student", student);
+            System.out.println(redisTemplate.opsForValue().get("student"));
         }
         return student;
     }

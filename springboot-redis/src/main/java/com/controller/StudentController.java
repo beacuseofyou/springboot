@@ -17,8 +17,6 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-
-
     @RequestMapping("/findStudentById")
     public Object findAllStudents(){
         return studentService.findStudentById(1);
