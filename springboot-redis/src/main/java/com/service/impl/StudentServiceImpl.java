@@ -23,8 +23,8 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private RedisTemplate<Object, Object> redisTemplate;
 
-    /*@Override
-    public *//*synchronized*//* Student findStudentById(Integer id) {
+    @Override
+    public /*synchronized*/ Student findStudentById(Integer id) {
 
         //高并发条件下此处可能存在缓存穿透问题，可用多线程synchronized
         //查询缓存
@@ -46,8 +46,9 @@ public class StudentServiceImpl implements StudentService {
             System.out.println("查询的缓存2.....");
         }
         return student;
-    }*/
+    }
 
+    /*
     @Override
     public synchronized Student findStudentById(Integer id) {
 
@@ -62,5 +63,5 @@ public class StudentServiceImpl implements StudentService {
             System.out.println("查询的缓存1.....");
         }
         return student;
-    }
+    }*/
 }
