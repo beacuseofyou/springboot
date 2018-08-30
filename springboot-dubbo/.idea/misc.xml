@@ -5,6 +5,7 @@
       <list>
         <option value="$PROJECT_DIR$/spring-bootdubbo-interface/pom.xml" />
         <option value="$PROJECT_DIR$/springboot-dubbo-provider/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-dubbo-consumer/pom.xml" />
       </list>
     </option>
   </component>

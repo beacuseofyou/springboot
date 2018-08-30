@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-bootdubbo-interface" />
+        <module name="springboot-dubbo-consumer" />
         <module name="springboot-dubbo-provider" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="spring-bootdubbo-interface" target="1.8" />
+      <module name="springboot-dubbo-consumer" target="1.8" />
       <module name="springboot-dubbo-provider" target="1.8" />
     </bytecodeTargetLevel>
   </component>
