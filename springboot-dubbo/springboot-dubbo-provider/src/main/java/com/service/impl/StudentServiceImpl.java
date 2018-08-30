@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @create:2018-08-29 15:21
  **/
 @Component //由于存在dubbo的@Service注解，所以用@Component将StudentServiceImpl注解成为一个bean
-@Service(version = "1.0.0",timeout = 10000) //dubbo注解<dubbo:service interface=... ref=.. version=>
+@Service//(version = "1.0.0",timeout = 10000) //dubbo注解<dubbo:service interface=... ref=.. version=>
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
