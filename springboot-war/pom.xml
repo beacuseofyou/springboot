@@ -52,6 +52,7 @@
             <artifactId>tomcat-jsp-api</artifactId>
         </dependency>
         <!--SpringBoot内嵌的Tomcat对JSP的解析包-->
+        <!--如果达成war包部署在其他Tomcat上此依赖可以不加-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
