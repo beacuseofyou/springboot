@@ -14,7 +14,7 @@
         <span th:text="*{age}">age</span>
     </div>
 
-    <!--混合使用-->
+    <!--混合使用:外面使用了th:object，子标签里的th:text必须是其对象的属性。-->
     <div th:object="${user}">
         <span th:text="*{id}">id</span>
         <span th:text="${user.name}">name</span>
@@ -26,5 +26,172 @@
     <span th:text="*{user.name}">name</span>
     <span th:text="*{user.age}">age</span>
 
+    <br>
+
+    <span th:text="*{msg}">msg</span>
+
+    <!--URL表达式：@{}-->
+    <!--运行完之后th:href的值替换href的值-->
+    <a href="info" th:href="@{'http://localhost:8080/thymeleaf/index?id='+${user.id}}">查看</a> <!--地址多传了参数却没有报错-->
+    <!--可用||避免拼接-->
+    <a href="info" th:href="@{|http://localhost:8080/thymeleaf/index?id=${user.id}&name=${user.name}|}">查看</a>
+    <a href="info" th:href="@{'http://localhost:8080/thymeleaf/index?id='+${user.id}+'&name='+${user.name}}">查看</a>
+    <a href="http://localhost:8080/thymeleaf/index?id=100" >查看</a>
+    <a href="info" th:href="@{http://localhost:8080/thymeleaf/index?id=100}">查看</a>
+
+    <!--相对URL,相对于页面-->
+    <a href="info.html" th:href="@{|user/info?id={user.id}|}">查看</a>
+    <!--相对URL,相对于项目上下文-->
+    <a href="info.html" th:href="@{|/user/info?id={user.id}|}">查看</a>
+
+    <!--th:action-->
+    <form id="login" th:action="@{/boot/login}">
+
+    </form>
+
+    <form action="/login"></form>
+
+    <!--将userList的每一个值取出放在user中，和foreach循环类似-->
+    <!--List-->
+    <p th:each="user : ${userList}">
+        <span th:text="${userStat.count}">userStat.count</span>
+        <span th:text="${user.id}">id</span>
+        <span th:text="${user.name}">name</span>
+        <span th:text="${user.age}">id</span>
+    </p>
+
+    <hr>
+
+    <!--Map-->
+    <p th:each="user : ${userMap}">
+        <span th:text="${userStat.count}">userStat.count</span>
+        <span th:text="${user.key}">key</span>
+        <span th:text="${user.value.id}">id</span>
+        <span th:text="${user.value.name}">name</span>
+        <span th:text="${user.value.age}">age</span>
+    </p>
+
+    <hr>
+
+    <!--Array-->
+    <p th:each="user : ${userArray}">
+        <span th:text="${userStat.count}">userStat.count</span>
+        <span th:text="${user.id}">id</span>
+        <span th:text="${user.name}">name</span>
+        <span th:text="${user.age}">id</span>
+    </p>
+
+    <hr>
+
+    <!--th:id-->
+    <span id="username">aaa</span>
+    <span th:id="${user.id}">id</span>
+
+    <hr>
+
+    <!--th:if-->
+    <!--设值时如果是String需加''-->
+    <span th:if="${sex == 1}">男1</span>
+    <span th:if="${sex eq 1}">男2</span>
+    <span th:if="${gender eq '2'}">女1</span>
+    <span th:if="${gender == '2'}">女2</span>
+
+    <hr>
+
+    <!--th:unless与th:if相反，取非-->
+    <span th:unless="${sex == 2}">男1</span>
+    <span th:unless="${sex eq 1}">男2</span>
+
+    <hr>
+
+    <!--th:switch/th:case-->
+    <div th:switch="${sex}">
+        <span th:case="1">1</span>
+        <span th:case="2">2</span>
+        <span th:case="*">默认</span>
+    </div>
+
+    <hr>
+
+    <!--th:src:引入外部资源-->
+    <script th:src="@{/js/my.js}"></script>
+    <img th:src="@{/img/1.jpg}">
+
+    <hr>
+
+    <!--th:text-->
+    <input type="text" id="name" name="name" th:text="${user.name}">
+
+    <hr>
+
+    <!--th:value-->
+    <input type="text" id="name" name="age" th:value="${user.age}">
+
+    <hr>
+
+    <!--th:attr:给html标签的某个属性设值-->
+    <input type="text" id="name" name="age" th:attr="value=${user.age}">
+
+    <span data-ref="login">11</span>
+    <span th:attr="data-ref=login">22</span>
+
+    <hr>
+
+    <!--th:onclick:注clickMe要''-->
+    <button th:onclick="'clickMe()'">clickMe</button>
+
+    <hr>
+
+    <!--th:style:注display:none要''-->
+    <div th:style="'display:block'">fsdahfj</div>
+
+    <hr>
+
+    <!--th:inline:内联文本，内联脚本,默认不写也可以-->
+    <!--内联表达式[[...]]-->
+    <div th:text="${user.name}">name</div>
+    <div th:inline="text">[[${user.name}]]</div>
+    <div>[[${user.name}]]</div>
+    <div th:inline="none">[[${user.name}]]</div>
+
+    <!--内联脚本-->
+    <script th:inline="javascript" type="text/javascript">
+        var user = [[${user.name}]];
+        alert(user);
+    </script>
+    <script th:inline="javascript" type="text/javascript">
+        var msg = "Hello," + [[${user.name}]];
+        alert(msg);
+    </script>
+
+    <script th:inline="javascript" type="text/javascript">
+        function clickMe() {
+            var user = [[${user.name}]];
+            alert(user);
+            alert("点我")
+        }
+    </script>
+
+    <hr>
+
+    <!--内置对象request:#request-->
+    <span th:text="${#request.getAttribute('name')}"></span>
+
+    <hr>
+
+    <!--内置对象session:#session-->
+    <span th:text="${#session.getAttribute('key')}"></span>
+
+    <span>[[${#session.id}]]</span>
+
+    <hr>
+
+    <!--#dates:date是后台传来的动态数据-->
+    <span th:text="${#dates.format(date, 'yyyy-MM-dd HH:mm:ss')}">time</span>
+
+    <hr>
+
+    <!--#strings:str是后台传来的动态数据-->
+    <span th:text="${#strings.substring(str, 0, 10)}">str</span>
 </body>
 </html>
