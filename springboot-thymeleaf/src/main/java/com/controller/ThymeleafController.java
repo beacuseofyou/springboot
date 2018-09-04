@@ -6,24 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @Controller
 @RequestMapping("thymeleaf")
 public class ThymeleafController {
 
-<<<<<<< HEAD
-
-=======
-    /**
-     * @Description: index
-     * @Params: model
-     * @return: java.lang.String 
-     * @Author: San Jinhong
-     * @Date: 2018/9/3 10:45
-     */
->>>>>>> 2df0857c1d36e6029642c5f8f28421f08b417d50
     @RequestMapping("/index")
     public String index(Model model, HttpServletRequest request){
         User user = new User();
@@ -62,5 +50,4 @@ public class ThymeleafController {
 
         return "index";
     }
-
 }
