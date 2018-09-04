@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body style="margin-left: 20%; margin-right: 20%; margin-top: 10%;">
+    <table class="table table-striped">
+        <thead><a th:href="@{/user/toAdd}">添加用户</a></thead>
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>用户id</th>
+            <th>昵称</th>
+            <th>手机</th>
+            <th>地址</th>
+            <th>邮箱</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${userList}">
+            <td th:text="${userStat.count}"></td>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.nick}"></td>
+            <td th:text="${user.phone}"></td>
+            <td th:text="${user.address}"></td>
+            <td th:text="${user.email}"></td>
+            <td>
+                <a th:href="@{|/user/toModify?id=${user.id}|}">修改</a>
+                <a th:href="@{|/user/remove?id=${user.id}|}">删除</a>
+            </td>
+        </tr>
+
+        <tr style="text-align: center">
+            <td colspan="7">
+                <span th:if="${curPage <= 1}">
+                    首页
+                    上一页
+                </span>
+
+                <span th:if="${curPage > 1}">
+                    <a th:href="@{/user/index}">首页</a>
+                    <a th:href="@{|/user/index?curPage=${curPage-1}|}">上一页</a>
+                </span>
+
+                <span th:if="${curPage == totalPages}">
+                    下一页
+                    尾页
+                </span>
+
+                <span th:if="${curPage < totalPages}">
+                    <a th:href="@{|/user/index?curPage=${curPage+1}|}">下一页</a>
+                    <a th:href="@{|/user/index?curPage=${totalPages}|}">尾页</a>
+                </span>
+
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

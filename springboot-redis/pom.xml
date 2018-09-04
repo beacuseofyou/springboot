@@ -38,6 +38,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
+
+        <!--Springboot监控的actu-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -49,7 +55,7 @@
                 <configuration>
                     <configurationFile>src/main/resources/GeneratorMapper.xml</configurationFile>
                     <verbose>true</verbose>
-                    <overwriter>ture</overwriter>
+                    <overwrite>true</overwrite>
                 </configuration>
             </plugin>
         </plugins>
