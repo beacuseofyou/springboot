@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface StudentMapper {
     int deleteByPrimaryKey(Integer id);
 
+
     int insert(Student record);
 
     int insertSelective(Student record);
