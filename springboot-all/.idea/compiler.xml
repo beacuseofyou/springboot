@@ -6,15 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="springboot-all-api" />
         <module name="springboot-all-consumer" />
-        <module name="springboot-all-interface" />
         <module name="springboot-all-provider" />
         <module name="springboot-interface" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="springboot-all-api" target="1.8" />
       <module name="springboot-all-consumer" target="1.8" />
-      <module name="springboot-all-interface" target="1.8" />
       <module name="springboot-all-provider" target="1.8" />
       <module name="springboot-interface" target="1.8" />
     </bytecodeTargetLevel>
