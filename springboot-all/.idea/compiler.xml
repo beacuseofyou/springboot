@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="springboot-all-consumer" />
-        <module name="springboot-all-interface" />
         <module name="springboot-all-provider" />
         <module name="springboot-interface" />
       </profile>
