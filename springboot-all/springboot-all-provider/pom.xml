@@ -45,7 +45,7 @@
         <!--dubbo接口项目依赖-->
         <dependency>
             <groupId>com.learning.springboot</groupId>
-            <artifactId>springboot-all-interface</artifactId>
+            <artifactId>springboot-all-api</artifactId>
             <version>1.0.0</version>
         </dependency>
 
@@ -92,6 +92,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
+
+        <!--健康检查依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

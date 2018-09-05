@@ -49,7 +49,7 @@
         <!--dubbo接口项目依赖-->
         <dependency>
             <groupId>com.learning.springboot</groupId>
-            <artifactId>springboot-all-interface</artifactId>
+            <artifactId>springboot-all-api</artifactId>
             <version>1.0.0</version>
         </dependency>
 

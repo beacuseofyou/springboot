@@ -33,12 +33,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int getUserByTotal() {
+        //整合redis报错了
+
         //设置key的序列化方式，采用字符串方式，可读性较好
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         //取redis总数
         Integer totalRows = (Integer) redisTemplate.opsForValue().get("totalRows");
         if(null == totalRows){
             synchronized (this){
+                totalRows = (Integer) redisTemplate.opsForValue().get("totalRows");
                 if(null == totalRows){
                     totalRows = userMapper.selectUserByTotal();
                     redisTemplate.opsForValue().set("totalRows", totalRows);
@@ -46,6 +49,7 @@ public class UserServiceImpl implements UserService {
             }
         }
         return totalRows;
+        //return userMapper.selectUserByTotal();
     }
 
     @Override
@@ -59,6 +63,7 @@ public class UserServiceImpl implements UserService {
             redisTemplate.opsForValue().set("totalRows", totalRows);
         }
         return add;
+        //return userMapper.insertSelective(user);
     }
 
     @Override
@@ -77,6 +82,7 @@ public class UserServiceImpl implements UserService {
             redisTemplate.opsForValue().set("totalRows", totalRows);
         }
         return delete;
+        //return userMapper.deleteByPrimaryKey(id);
     }
 
     @Override
