@@ -4,10 +4,13 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/springboot-interface/pom.xml" />
+<<<<<<< HEAD
+=======
         <option value="$PROJECT_DIR$/springboot-all-interface/pom.xml" />
         <option value="$PROJECT_DIR$/springboot-all-provider/pom.xml" />
         <option value="$PROJECT_DIR$/springboot-all-consumer/pom.xml" />
         <option value="$PROJECT_DIR$/springboot-all-api/pom.xml" />
+>>>>>>> e686647bf0ded65d6bb5a4d7f62f81feefe4e0a8
       </list>
     </option>
   </component>
