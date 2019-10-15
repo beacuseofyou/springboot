@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,25 +33,41 @@ public class FileInfoController {
 	@RequestMapping("uploadFile")
 	public Response uploadFile(@ApiParam(value = "参数", name = "params")@RequestBody Map<String, String> params){
 		Response response = new Response();
+		Map<String, Object> responseData = new HashMap<>();
 		String localFilePath = params.get("localFilePath");
 		String filePattern = params.get("filePattern");
-		fileInfoService.uploadFile(localFilePath,filePattern);
-		return response;
-	}
-
-	@RequestMapping("getFileInfoById")
-	public Response getFileInfoById(@RequestParam Integer id){
-		Response response = new Response();
-		Map<String, Object> responseData = new HashMap<>();
-		FileInfo fileInfo =  fileInfoService.getFileInfoById(id);
-		responseData.put("fileInof", fileInfo);
+		int id = fileInfoService.uploadFile(localFilePath, filePattern);
+		responseData.put("id", id);
 		response.setData(responseData);
 		return response;
 	}
 
-	@RequestMapping("findFileUrlById")
-	public String findFileUrlById(@RequestParam Integer id){
-		return fileInfoService.findFileUrlById(id);
+	@RequestMapping("showFile")
+	public Response showFile(@ApiParam(value = "文件id", name = "fileId") @RequestParam String fileId){
+		Response response = new Response();
+
+		return response;
 	}
 
+	@RequestMapping("downloadFile")
+	public void downloadFile(@ApiParam(value = "参数", name = "params")@RequestBody Map<String, String> params){
+		String fileId = params.get("fileId");
+		String filePath = params.get("filePath");
+		String fileName = params.get("fileName");
+		fileInfoService.downloadFile(filePath, fileName, fileId);
+	}
+
+	@RequestMapping("logicalDelete")
+	public void logicalDelete(@ApiParam(value = "参数", name = "params")@RequestBody Map<String, String> params){
+		String fileId = params.get("fileId");
+		//更新逻辑删除状态为1：已删除
+		fileInfoService.updateIsDelete(fileId, 1);
+	}
+
+	@RequestMapping("withdrawDetete")
+	public void withdrawLogicalDetete(@ApiParam(value = "参数", name = "params")@RequestBody Map<String, String> params){
+		String fileId = params.get("fileId");
+		//更新逻辑删除状态为0：未删除
+		fileInfoService.updateIsDelete(fileId, 0);
+	}
 }

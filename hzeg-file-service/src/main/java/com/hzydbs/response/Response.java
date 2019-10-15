@@ -9,9 +9,9 @@ import lombok.Data;
 @Data
 public class Response {
 
-	private String errorCode;
+	private String code;
 
-	private String value;
+	private String message;
 
 	private Object data;
 
